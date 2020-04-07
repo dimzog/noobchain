@@ -99,10 +99,10 @@ def get_money_received():
 def create_browser_transaction():
     sender = str(request.form['sender_address'])
     sender = sender.replace(' ', '\n')
-    sender = '-----BEGIN RSA PUBLIC KEY-----\n'+ sender + '\n-----END RSA PUBLIC KEY-----'
+    sender = '-----BEGIN PUBLIC KEY-----\n' + sender + '\n-----END PUBLIC KEY-----'
     receiver = str(request.form['receiver_address'])
     receiver = receiver.replace(' ', '\n')
-    receiver = '-----BEGIN RSA PUBLIC KEY-----\n' + receiver + '\n-----END RSA PUBLIC KEY-----'
+    receiver = '-----BEGIN PUBLIC KEY-----\n' + receiver + '\n-----END PUBLIC KEY-----'
     amount = request.form['amount']
 
     if not amount.isnumeric():
@@ -211,7 +211,7 @@ def home():
     session['viewing'] = 'home'
     data = {
         'ADDRESS': new_node.address,
-        'PUB_KEY': new_node.public.replace('-----BEGIN RSA PUBLIC KEY-----', '').replace('-----END RSA PUBLIC KEY-----', ''),
+        'PUB_KEY': new_node.public.replace('-----BEGIN PUBLIC KEY-----', '').replace('-----END PUBLIC KEY-----', ''),
         'NO_OF_NODES': len(new_node.ring),
         'CPU_PERCENT': psutil.cpu_percent(),
         'MEM_PERCENT': psutil.virtual_memory()[2]
